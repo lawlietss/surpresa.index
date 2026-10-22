@@ -451,20 +451,22 @@ h1,h2,.display-title,.hero-glitch{font-family:"Caveat",cursive;letter-spacing:0}
 .puppet::after{bottom:-4%;width:105%;height:10%;background:radial-gradient(closest-side,#000b,#0000)}
 .button-primary[data-next="3"]{animation:glowbtn 1.3s ease-in-out infinite}
 @keyframes glowbtn{0%,100%{box-shadow:3px 3px 0 var(--ink),0 0 0 #f5d18a00}50%{box-shadow:3px 3px 0 var(--ink),0 0 26px 6px #f5d18acc}}
-#warp{position:fixed;inset:0;z-index:300;display:none;overflow:hidden;background:#1d0f2e}
-#warp.on{display:block;animation:warpfade 2.3s ease both}
-@keyframes warpfade{0%{opacity:0}22%{opacity:1}74%{opacity:1}100%{opacity:0}}
-#warp .w-spin{border-radius:50%;position:absolute;left:50%;top:50%;width:170vmax;height:170vmax;margin:-85vmax 0 0 -85vmax;background:conic-gradient(#ff5bbd,#f5d18a,#79d7f4,#b38aff,#ff5bbd);opacity:.9;animation:wspin 2.3s ease-in both}
-#warp.back .w-spin{background:conic-gradient(#b38aff,#ffd9ec,#f5d18a,#ff9bd8,#b38aff)}
-@keyframes wspin{from{transform:rotate(0) scale(.15)}to{transform:rotate(600deg) scale(1)}}
-#warp .w-glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,#fff 0,#fff9 18%,#fff0 55%);animation:wglow 2.3s ease both}
-@keyframes wglow{0%,100%{opacity:0;transform:scale(.3)}45%{opacity:1;transform:scale(1.6)}}
-#warp .w-flash{position:absolute;inset:0;background:#fff;opacity:0;animation:wflash 2.3s ease both}
-@keyframes wflash{0%,30%{opacity:0}46%{opacity:1}62%{opacity:.7}100%{opacity:0}}
-#warp .w-icons span{position:absolute;left:50%;top:50%;font-size:2.2rem;margin:-1.1rem;opacity:0;animation:wicon 1.9s ease-out both;animation-delay:var(--d)}
-@keyframes wicon{0%{opacity:0;transform:rotate(var(--a)) translateY(0) scale(.3)}25%{opacity:1}100%{opacity:0;transform:rotate(calc(var(--a) + 280deg)) translateY(-46vmin) scale(1.3)}}
-#warp .w-text{position:absolute;left:0;right:0;top:44%;text-align:center;font:700 clamp(2.2rem,10vw,4rem) "Caveat",cursive;color:#fff;text-shadow:0 0 18px #ff5bbd,3px 3px 0 #6b4a2a;animation:wtext 2.3s ease both;margin:0}
-@keyframes wtext{0%,15%{opacity:0;transform:scale(.4)}35%,60%{opacity:1;transform:scale(1.08) rotate(-3deg)}100%{opacity:0;transform:scale(1.4)}}
+#warp{--r:min(36vmin,210px);position:fixed;inset:0;z-index:300;display:none;overflow:hidden;background:radial-gradient(circle at 50% 50%,#2e1a44,#1d0f2e 70%)}
+#warp.on{display:block;animation:warpfade 1.8s ease both}
+@keyframes warpfade{0%{opacity:0}25%{opacity:1}70%{opacity:1}100%{opacity:0}}
+/* selo: dois anéis finos que se abrem devagar no centro */
+#warp .w-spin{position:absolute;inset:0;margin:auto;width:calc(var(--r)*2);height:calc(var(--r)*2);border-radius:50%;border:2px solid #f5d18acc;box-shadow:0 0 18px #f5d18a55,inset 0 0 18px #f5d18a33;opacity:0;animation:wspin 1.8s cubic-bezier(.2,.7,.3,1) both}
+#warp .w-spin::after{content:"";position:absolute;inset:9%;border-radius:50%;border:1.5px dashed #f5d18a99}
+#warp.back .w-spin{border-color:#ffd9eccc;box-shadow:0 0 18px #ff9bd855,inset 0 0 18px #ff9bd833}
+#warp.back .w-spin::after{border-color:#ffd9ec99}
+@keyframes wspin{0%{opacity:0;transform:scale(.75) rotate(-20deg)}35%,65%{opacity:1}100%{opacity:0;transform:scale(1.1) rotate(20deg)}}
+#warp .w-glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,#f5d18a38 0,#f5d18a00 45%);opacity:0;animation:wglow 1.8s ease both}
+@keyframes wglow{0%,100%{opacity:0}45%,60%{opacity:1}}
+#warp .w-flash{display:none}
+#warp .w-icons span{position:absolute;left:50%;top:50%;font-size:1.25rem;margin:-.625rem;opacity:0;animation:wicon 1.3s ease-out both;animation-delay:var(--d)}
+@keyframes wicon{0%{opacity:0;transform:rotate(var(--a)) translateY(calc(var(--r)*-1)) scale(.6)}30%{opacity:.85}100%{opacity:0;transform:rotate(calc(var(--a) + 30deg)) translateY(calc(var(--r)*-1.45)) scale(1)}}
+#warp .w-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 16px;text-align:center;font:700 clamp(1.7rem,7vw,2.6rem) "Caveat",cursive;color:#fff4dc;text-shadow:0 0 12px #f5d18a66;animation:wtext 1.8s ease both;margin:0}
+@keyframes wtext{0%,18%{opacity:0;transform:translateY(8px)}38%,62%{opacity:1;transform:none}85%,100%{opacity:0;transform:translateY(-4px)}}
 @media(prefers-reduced-motion:reduce){#warp.on{animation:none}}
 .letter-yuza{display:block;width:min(46vw,170px);height:auto;margin:0 auto 10px;filter:drop-shadow(0 6px 6px #0004)}.letter-sign{text-align:right;font-family:"Caveat",cursive;font-size:1.7rem;color:var(--pink)!important;margin-top:14px}
 /* personagens: altura fixa no palco, mesma escala em todas as expressões */
@@ -623,6 +625,6 @@ h1,h2,.display-title,.hero-glitch{font-family:"Caveat",cursive;letter-spacing:0}
   if(s().unlocked){$("access-answer").value="";$("access-form").dataset.resume="true";}
 })();</script>
 <div id="warp" aria-hidden="true"><div class="w-spin"></div><div class="w-glow"></div><div class="w-icons"></div><div class="w-flash"></div><p class="w-text"></p></div>
-<script>window.RitonaFX={busy:false,warp(kind,cb){const w=document.getElementById("warp");if(!w||this.busy||matchMedia("(prefers-reduced-motion:reduce)").matches){cb();return;}this.busy=true;const go=kind==="go",ic=go?["🍃","✨","🌀","🍃","⭐"]:["✨","🎂","💜","🎈","✨"],h=w.querySelector(".w-icons");h.innerHTML="";for(let i=0;i<18;i++){const e=document.createElement("span");e.textContent=ic[i%ic.length];e.style.setProperty("--a",i*20+"deg");e.style.setProperty("--d",(i%6)*0.08+"s");h.appendChild(e);}w.querySelector(".w-text").textContent=go?"O selo ativou!":"Voltando pra casa...";w.className="on "+kind;setTimeout(cb,1050);setTimeout(()=>{w.className="";this.busy=false;},2350);}};</script>
+<script>window.RitonaFX={busy:false,warp(kind,cb){const w=document.getElementById("warp");if(!w||this.busy||matchMedia("(prefers-reduced-motion:reduce)").matches){cb();return;}this.busy=true;const go=kind==="go",ic=go?["🍃","✨"]:["✨","💜"],h=w.querySelector(".w-icons");h.innerHTML="";for(let i=0;i<8;i++){const e=document.createElement("span");e.textContent=ic[i%ic.length];e.style.setProperty("--a",i*45+"deg");e.style.setProperty("--d",0.3+(i%4)*0.06+"s");h.appendChild(e);}w.querySelector(".w-text").textContent=go?"O selo ativou!":"Voltando pra casa...";w.className="on "+kind;setTimeout(cb,800);setTimeout(()=>{w.className="";this.busy=false;},1850);}};</script>
 </body>
 </html>
